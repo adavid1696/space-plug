@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 
 // Routes
 import userRoute from './route/userRoute.js'
+import itemRoute from './route/itemRoute.js'
 
 const app = express();
 const PORT = 3001;
@@ -19,6 +20,7 @@ const connect = async () => {
 app.use(express.json())
 
 app.use('/user', userRoute)
+app.use('/item', itemRoute)
 
 // error handling
 app.use((err, req, res, next) => {

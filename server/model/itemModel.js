@@ -23,11 +23,11 @@ const SpaceSchema = new mongoose.Schema({
 		required: true
 	},
 	startTime: {
-		type: Number,
+		type: String,
 		required: true
 	},
 	endTime: {
-		type: Number,
+		type: String,
 		required: true
 	},
 	comments: [{
