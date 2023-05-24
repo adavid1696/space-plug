@@ -1,4 +1,5 @@
 import Item from '../model/itemModel.js'
+import User from '../model/userModel.js';
 
 export const createItem = async (req, res, next) => {
 
@@ -9,6 +10,12 @@ export const createItem = async (req, res, next) => {
 		})
 		
 		const savedItem = await newItem.save();
+
+		await User.findByIdAndUpdate(req.params.id, {
+			$push: {
+				listedPlaces: savedItem
+			}
+		})
 
 		res.status(200).json(savedItem)
 	} catch (e) {
