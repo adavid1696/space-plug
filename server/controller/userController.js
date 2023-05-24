@@ -17,9 +17,6 @@ export const getUserItems = async (req, res, next) => {
 	
 	try {
 		const user = await User.findById(req.params.id).populate('listedPlaces')
-		// if (!user) {
-    //   return res.status(404).json({ error: 'User not found' });
-    // }
 
 		res.status(200).json(user)
 	} catch (e) {

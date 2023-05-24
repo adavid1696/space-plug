@@ -1,14 +1,20 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv'
+import cors from 'cors'
 
 // Routes
 import userRoute from './route/userRoute.js'
 import itemRoute from './route/itemRoute.js'
+import authRoute from './route/authRoute.js'
 
 const app = express();
 const PORT = 3001;
 dotenv.config();
+app.use(cors({
+	origin: "http://localhost:3000"
+}))
+app.use(express.json());
 
 // db connection
 const connect = async () => {
@@ -17,10 +23,10 @@ const connect = async () => {
 }
 
 // middleware
-app.use(express.json())
 
 app.use('/user', userRoute)
 app.use('/item', itemRoute)
+app.use('/auth', authRoute)
 
 // error handling
 app.use((err, req, res, next) => {
