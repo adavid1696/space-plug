@@ -16,3 +16,17 @@ export const createItem = async (req, res, next) => {
 	}
 }
 
+export const getAllComments = async (req, res, next) => {
+	console.log('in get all comments controller')
+	try {
+		const item = await Item.findById(req.params.id).populate('comments');
+		// await item.populateComments();
+
+		// Access the populated comments
+		const comments = item.comments;
+		res.status(200).json(comments)
+		console.log(comments)
+	} catch (e) {
+		next(e)
+	}
+}
