@@ -25,7 +25,6 @@ export const getAllComments = async (req, res, next) => {
 		// Access the populated comments
 		const comments = item.comments;
 		res.status(200).json(comments)
-		console.log(comments)
 	} catch (e) {
 		next(e)
 	}
@@ -37,6 +36,18 @@ export const getAllItems = async (req, res, next) => {
 		const items = await Item.find();
 	
 		res.status(200).json(items)
+		
+	} catch (e) {
+		next(e)
+	}
+}
+
+export const deleteItem = async (req, res, next) => {
+	
+	try {
+		const deletedItem = await Item.findByIdAndDelete(req.params.id);
+	
+		res.status(200).json(deletedItem)
 		
 	} catch (e) {
 		next(e)

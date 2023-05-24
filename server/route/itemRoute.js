@@ -1,5 +1,5 @@
 import express from 'express';
-import { createItem, getAllComments, getAllItems } from '../controller/itemController.js';
+import { createItem, deleteItem, getAllComments, getAllItems } from '../controller/itemController.js';
 import { createComment } from '../controller/commentController.js';
 
 const router = express.Router();
@@ -12,4 +12,7 @@ router.post('/:id/comment', createComment)
 router.get('/:id/comments', getAllComments)
 // GET ITEMS
 router.get('/', getAllItems)
+// DELETE ITEM
+router.delete('/:id', deleteItem)
+
 export default router;
