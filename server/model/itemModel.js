@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const SpaceSchema = new mongoose.Schema({
+const ItemSchema = new mongoose.Schema({
 	title: {
 		type: String,
 		required: true,
@@ -46,4 +46,4 @@ const SpaceSchema = new mongoose.Schema({
 	
 })
 
-export default mongoose.model("Space", SpaceSchema)
+export default mongoose.model("Item", ItemSchema)

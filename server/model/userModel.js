@@ -24,11 +24,11 @@ const UserSchema = new mongoose.Schema({
 	},
 	listedPlaces: [{
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Space'
+		ref: 'Item'
 	}],
 	bookedPlaces: [{
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Space'
+		ref: 'Item'
 	}]
 })
 
