@@ -20,7 +20,7 @@ const Navbar = () => {
           <li>
             <a
               className="text-white cursor-pointer"
-              onClick={() => handleNavigation('/home')}
+              onClick={() => handleNavigation('/dashboard')}
             >
               Home
             </a>
