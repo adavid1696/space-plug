@@ -9,6 +9,9 @@ const nextConfig = {
       }
     ]
   },
+  images: {
+    domains: ['www.google.com', 'media.timeout.com']
+  }
 }
 
 module.exports = nextConfig
