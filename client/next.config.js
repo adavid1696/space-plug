@@ -10,7 +10,7 @@ const nextConfig = {
     ]
   },
   images: {
-    domains: ['www.google.com', 'media.timeout.com']
+    domains: ['www.google.com', 'media.timeout.com', 'www.therooftopguide.com']
   }
 }
 
