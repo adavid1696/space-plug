@@ -26,11 +26,19 @@ export const createItem = async (req, res, next) => {
 export const getAllComments = async (req, res, next) => {
 
 	try {
-		const item = await Item.findById(req.params.id).populate('comments');
-		// await item.populateComments();
-
+		const item = await Item
+											.findById(req.params.id)
+											.populate({
+												path: 'comments',
+												populate: {
+													path: 'user',
+													model: 'User'
+												}
+											});
+		
 		// Access the populated comments
 		const comments = item.comments;
+	
 		res.status(200).json(comments)
 	} catch (e) {
 		next(e)
