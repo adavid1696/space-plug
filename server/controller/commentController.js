@@ -11,9 +11,11 @@ export const createComment = async (req, res, next) => {
 		
 		const savedComment = await newComment.save();
 		
+		await savedComment.populate('user')
+
 		await Item.findByIdAndUpdate( req.params.id, {
 			$push: {
-				comments: newComment
+				comments: savedComment
 			}
 		})
 
