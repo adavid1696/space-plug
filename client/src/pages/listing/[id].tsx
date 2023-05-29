@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { GetServerSidePropsContext } from 'next';
 
 interface Item {
   _id: string;
@@ -11,7 +12,12 @@ interface Item {
   price: number;
   startTime: string;
   endTime: string;
-  user: string;
+  user: User;
+}
+
+interface User {
+  firstName: string,
+  lastName: string
 }
 
 interface Comment {
@@ -24,7 +30,11 @@ interface CustomRouterQuery {
   data?: string;
 }
 
-export async function getServerSideProps(context) {
+interface ListingStageProps {
+  comments: Comment[]
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { query } = context;
 
   const res = await fetch(`http://localhost:3001/item/${query.id}/comments`);
@@ -37,7 +47,7 @@ export async function getServerSideProps(context) {
 
 }
 
-export default function ListingPage({ comments } ) {
+export default function ListingPage({ comments }: ListingStageProps ) {
   const router = useRouter();
   const [currentImg, setCurrentImg] = useState(0)
 
@@ -68,6 +78,8 @@ export default function ListingPage({ comments } ) {
       setCurrentImg(imgs.length - 1)
     }else setCurrentImg(prev => prev - 1)
   }
+
+  if (!item) return <div>Loading item data...</div>;
 
   return (
     <div className="container mx-auto px-4 py-8">
