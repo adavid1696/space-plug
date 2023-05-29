@@ -17,7 +17,7 @@ const ListingCard: React.FC<ListingCardProps> = ({ item }) => {
   const handleClick = () => {
     const serializedItem = encodeURIComponent(JSON.stringify(item))
     router.push({
-      pathname: `/listing/${item._id}}`,
+      pathname: `/listing/${item._id}`,
       query: {data: serializedItem}
     })
   }
