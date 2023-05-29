@@ -40,8 +40,7 @@ export const getAllComments = async (req, res, next) => {
 export const getAllItems = async (req, res, next) => {
 	
 	try {
-		const items = await Item.find();
-	
+		const items = await Item.find().populate('user');
 		res.status(200).json(items)
 		
 	} catch (e) {
