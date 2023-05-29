@@ -41,6 +41,14 @@ const Navbar = () => {
               Contact
             </a>
           </li>
+          <li>
+            <a
+              className="text-white cursor-pointer"
+              onClick={() => handleNavigation('/host')}
+            >
+              List Your Space
+            </a>
+          </li>
         </ul>
       </div>
     </nav>
