@@ -67,6 +67,7 @@ export default function ListingPage({ comments }: ListingStageProps ) {
         <h3 className="text-2xl font-semibold">{item.user.firstName} {item.user.lastName}</h3>
         <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Message</button>
       </div>
+      <p>{item.rules}</p>
 
       <div className="comments">
         {comments.map((comment) => (

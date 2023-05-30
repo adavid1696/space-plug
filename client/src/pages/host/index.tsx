@@ -2,21 +2,18 @@ import { useRef, useState } from "react";
 
 export default function Host() {
 
-  const title = useRef()
-  const type = useRef()
-  const location = useRef()
-  const rules = useRef()
-  const price = useRef()
+  const title = useRef<HTMLInputElement>(null);
+  const type = useRef<HTMLSelectElement>(null);
+  const location = useRef<HTMLInputElement>(null);
+  const rules = useRef<HTMLInputElement>(null);
+  const price = useRef<HTMLInputElement>(null);
  
   
   const handleClick = async (e: any) => {
-    console.log('type: ', type.current.value)
     e.preventDefault();
 
-    
-
     try {
-      const res = await fetch(`http://localhost:3001/item/646e08a6321b5b9f270d013f`, {
+      await fetch(`http://localhost:3001/item/646e08a6321b5b9f270d013f`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -26,12 +23,11 @@ export default function Host() {
         type: type.current?.value,
         location: location.current?.value,
         rules: rules.current?.value,
-        price: parseFloat(price.current?.value)
+        price: parseFloat(price.current?.value) || ""
       })
     })
 
-    const resJSON = await res.json();
-    console.log(resJSON)
+    
     } catch (e) {
         console.error(e)
     }
@@ -81,12 +77,12 @@ export default function Host() {
         </div>
 
         <div className="mb-4">
-          <label className="block font-bold mb-2" htmlFor="price" required >
+          <label className="block font-bold mb-2" htmlFor="price" >
             Price
           </label>
           <div className="flex">
             <span className="text-gray-500">$</span>
-            <input type="text" className="form-input pl-2" ref={price} required/>
+            <input type="number" className="form-input pl-2" ref={price} required/>
           </div>
         </div>
 

@@ -1,24 +1,19 @@
-import { useState, useEffect } from "react";
 import ListingCard from "../../components/listing-card/ListingCard";
 import SearchBar from "../../components/search/SearchBar";
-import { useRouter } from "next/router";
 
-export default function Dashboard() {
-  const [data, setData] = useState();
 
-  useEffect(() => {
-    const fetchAPI = async () => {
-      const res = await fetch('http://localhost:3001/item');
-      const resJSON = await res.json();
+export async function getServerSideProps() {
+  const res = await fetch('http://localhost:3001/item');
+  const resJSON = await res.json()
 
-      setData(resJSON)
+  return {
+    props: {
+      data: resJSON
     }
+  }
+}
 
-    fetchAPI()
-
-  }, [])
-  
-  if(!data) return 'Loading Data'
+export default function Dashboard({ data }) {
 
   return (
     
