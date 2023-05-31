@@ -2,7 +2,6 @@ import Item from '../model/itemModel.js'
 import User from '../model/userModel.js';
 
 export const createItem = async (req, res, next) => {
-
 	try {
 		const newItem = await new Item({
 			...req.body,

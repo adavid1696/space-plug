@@ -22,14 +22,14 @@ const ItemSchema = new mongoose.Schema({
 		type: Number,
 		required: true
 	},
-	startTime: {
-		type: String,
-		required: true
-	},
-	endTime: {
-		type: String,
-		required: true
-	},
+	// startTime: {
+	// 	type: String,
+	// 	required: true
+	// },
+	// endTime: {
+	// 	type: String,
+	// 	required: true
+	// },
 	comments: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Comment',
