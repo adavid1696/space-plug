@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { GetServerSidePropsContext } from 'next';
 import ImageCarousel from "@component/components/image-carousel/ImageCarousel";
+import Booking from "@component/components/booking/Booking";
 
 interface Item {
   _id: string;
@@ -76,6 +77,10 @@ export default function ListingPage({ comments }: ListingStageProps ) {
             <p className="mb-2">{comment.content}</p>
           </div>
         ))}
+      </div>
+
+      <div className="bookingContainer">
+        <Booking item={item} />
       </div>
     </div>
   );
