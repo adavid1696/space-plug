@@ -1,4 +1,4 @@
-// import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt'
 import User from '../model/userModel.js'
 
 export const login = async (req, res, next) => {
@@ -12,9 +12,36 @@ export const login = async (req, res, next) => {
 			res.status(404).json('Incorrect email or password! Try again.')
 		}
 
+		const isPassword = bcrypt.compareSync(password, user.password);
+
+		if(!isPassword){
+			res.status(404).json('Incorrect email or password! Try again.')
+		}
+
 		else res.status(200).json("Succesfull Login!")
 	} catch (e) {
 		next(e)
 	}
+// random log
+}
 
+export const register = async (req, res, next) => {
+	
+	const { password } = req.body;
+
+	const salt = bcrypt.genSaltSync(10);
+	const hash = bcrypt.hashSync(password, salt)
+
+	try {
+		const newUser = new User({
+			...req.body,
+			password: hash
+		})
+		
+		const savedUser = await newUser.save();
+
+		res.status(200).json(savedUser)
+	} catch (e) {
+		next(e)
+	}
 }
