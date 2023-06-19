@@ -6,19 +6,21 @@ export const login = async (req, res, next) => {
 	const { email, password } = req.body;
 
 	try {
-		const user = await User.findOne({email, password});
+		const user = await User.findOne({ email });
+		// console.log(password, user.password)
 
 		if(!user){
-			res.status(404).json('Incorrect email or password! Try again.')
+			return res.status(404).json('Incorrect email or password! Try again.')
 		}
 
+		
 		const isPassword = bcrypt.compareSync(password, user.password);
 
 		if(!isPassword){
-			res.status(404).json('Incorrect email or password! Try again.')
+			return res.status(404).json('Incorrect email or password! Try again.')
 		}
 
-		else res.status(200).json("Succesfull Login!")
+		else return res.status(200).json("Succesfull Login!")
 	} catch (e) {
 		next(e)
 	}
