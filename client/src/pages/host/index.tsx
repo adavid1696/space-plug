@@ -1,4 +1,5 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import { useRouter } from "next/router";
 
 export default function Host() {
 
@@ -7,13 +8,14 @@ export default function Host() {
   const location = useRef<HTMLInputElement>(null);
   const rules = useRef<HTMLInputElement>(null);
   const price = useRef<HTMLInputElement>(null);
+
+  const router = useRouter();
  
   
   const handleClick = async (e: any) => {
-    e.preventDefault();
-
+    e.preventDefault()
     try {
-      await fetch(`http://localhost:3001/item/646e08a6321b5b9f270d013f`, {
+      await fetch(`http://localhost:3001/item/6490c0d19e6cb54695ef8529`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -31,6 +33,9 @@ export default function Host() {
     } catch (e) {
         console.error(e)
     }
+
+    console.log('pushing')
+    router.push('/dashboard')
 
   }
 
